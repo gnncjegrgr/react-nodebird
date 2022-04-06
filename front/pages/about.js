@@ -7,17 +7,15 @@ import { Avatar, Card } from 'antd';
 import AppLayout from '../components/AppLayout';
 import wrapper from '../store/configureStore';
 import { LOAD_USER_REQUEST } from '../reducers/user';
-import { AccountBookOutlined } from '@ant-design/icons';
 
-const About = () => {
+const Profile = () => {
   const { userInfo } = useSelector((state) => state.user);
 
   return (
     <AppLayout>
       <Head>
-        <title>Zerocho | NodeBird</title>
+        <title>ZeroCho | NodeBird</title>
       </Head>
-
       {userInfo ? (
         <Card
           actions={[
@@ -32,7 +30,8 @@ const About = () => {
               {userInfo.Followings}
             </div>,
             <div key="follower">
-              팔로워 <br />
+              팔로워
+              <br />
               {userInfo.Followers}
             </div>,
           ]}
@@ -45,6 +44,7 @@ const About = () => {
 };
 
 export const getStaticProps = wrapper.getStaticProps(async (context) => {
+  console.log('getStaticProps');
   context.store.dispatch({
     type: LOAD_USER_REQUEST,
     data: 1,
@@ -53,4 +53,4 @@ export const getStaticProps = wrapper.getStaticProps(async (context) => {
   await context.store.sagaTask.toPromise();
 });
 
-export default About;
+export default Profile;

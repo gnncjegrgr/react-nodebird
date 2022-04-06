@@ -1,7 +1,7 @@
 import { Form, Input, Button } from 'antd';
 import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import useInput from '../hooks/useInput';
 import { ADD_COMMENT_REQUEST } from '../reducers/post';
@@ -14,7 +14,6 @@ const CommentForm = ({ post }) => {
 
   useEffect(() => {
     if (addCommentDone) {
-      //성공적으로 커멘트가 등록됐을 때만 댓글 창 지우기
       setCommentText('');
     }
   }, [addCommentDone]);
@@ -22,15 +21,15 @@ const CommentForm = ({ post }) => {
   const onSubmitComment = useCallback(() => {
     dispatch({
       type: ADD_COMMENT_REQUEST,
-      data: { content: commentText, userId: id, postId: post.id },
+      data: { content: commentText, postId: post.id, userId: id },
     });
   }, [commentText, id]);
 
   return (
     <Form onFinish={onSubmitComment}>
       <Form.Item style={{ position: 'relative', margin: 0 }}>
-        <Input.TextArea rows={4} value={commentText} onChange={onChangeCommentText} />
-        <Button style={{ position: 'absolute', right: 0, bottom: -40 }} type="primary" htmlType="submit" loading={addCommentLoading}>
+        <Input.TextArea value={commentText} onChange={onChangeCommentText} rows={4} />
+        <Button style={{ position: 'absolute', right: 0, bottom: -40, zIndex: 1 }} type="primary" htmlType="submit" loading={addCommentLoading}>
           삐약
         </Button>
       </Form.Item>

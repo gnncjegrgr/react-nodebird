@@ -15,13 +15,12 @@ module.exports = class Hashtag extends Model {
         modelName: 'Hashtag',
         tableName: 'hashtags',
         charset: 'utf8mb4',
-        collate: 'utf8mb4_general_ci',
+        collate: 'utf8mb4_general_ci', // 이모티콘 저장
         sequelize,
       }
     );
   }
   static associate(db) {
     db.Hashtag.belongsToMany(db.Post, { through: 'PostHashtag' });
-    // belongsToMany: Hashtag가 하나의 Post에 많이 있다. 반대로 하나의 Post에 Hashtag가 많이 있다.
   }
 };

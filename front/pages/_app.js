@@ -8,8 +8,8 @@ import wrapper from '../store/configureStore';
 const NodeBird = ({ Component }) => (
   <>
     <Head>
-      <meta charSet="utf-8" />
       <title>NodeBird</title>
+      <link rel="shortcut icon" href="/favicon.ico" />
     </Head>
     <Component />
   </>

@@ -29,7 +29,6 @@ const upload = multer({
   }),
   limits: { fileSize: 20 * 1024 * 1024 }, // 20MB
 });
-
 router.post('/', isLoggedIn, upload.none(), async (req, res, next) => {
   // POST /post
   try {
@@ -186,6 +185,11 @@ router.post('/:postId/retweet', isLoggedIn, async (req, res, next) => {
         {
           model: User,
           attributes: ['id', 'nickname'],
+        },
+        {
+          model: User, // 좋아요 누른 사람
+          as: 'Likers',
+          attributes: ['id'],
         },
         {
           model: Image,

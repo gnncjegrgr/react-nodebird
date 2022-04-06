@@ -22,6 +22,5 @@ module.exports = class Image extends Model {
   }
   static associate(db) {
     db.Image.belongsTo(db.Post);
-    // 이미지는 Post에 속한다.(하나의 이미지는 하나의 포스트에서만 존재한다.)
   }
 };
